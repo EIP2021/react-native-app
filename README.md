@@ -1,1 +1,1 @@
-# groove
+# Mobile application for EIP
