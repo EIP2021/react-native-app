@@ -8,3 +8,4 @@ npm-debug.*
 yarn.lock
 package-lock.json
 android/.gradle
+android/app/build/
