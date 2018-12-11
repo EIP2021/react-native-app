@@ -113,7 +113,7 @@ class Scanner extends Component {
 }
 
 Scanner.propTypes = {
-  isFocused: PropTypes.isRequired,
+  isFocused: PropTypes.bool.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired,
