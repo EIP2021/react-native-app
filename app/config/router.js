@@ -6,6 +6,9 @@ createSwitchNavigator,
 createAppContainer,
 } from 'react-navigation';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
+import Scanner from '../screens/Scanner';
+import Product from '../screens/Product';
+import Placeholder from '../screens/Placeholder';
 
 const AuthStack = createStackNavigator(
 	{
@@ -23,13 +26,20 @@ const AuthStack = createStackNavigator(
 
 const ScanStack = createStackNavigator(
 	{
-		Scan: AuthLoadingScreen,
+		Scan: {
+      screen: Scanner
+    },
+    Product: {
+      screen: Product
+    }
 	}
 );
 
 const ProfileStack = createStackNavigator(
 	{
-		Profile: AuthLoadingScreen,
+		Profile: {
+      screen: Placeholder
+    },
 	}
 );
 

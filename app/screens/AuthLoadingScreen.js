@@ -11,10 +11,15 @@ import {
 export default class AuthLoadingScreen extends Component {
 	constructor(props) {
 		super(props);
-		this._checkAuth();
 	}
 
+  componentDidMount = async () => {
+		this._checkAuth();
+  }
+
 	_checkAuth = () => {
+    console.log("checking auth");
+    this.props.navigation.navigate('App')
 	}
 
 	render() {
