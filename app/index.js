@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import React, { PureComponent } from 'react';
 import RootStack from './config/router';
 
-export default class App extends Component {
-	render() {
-		return <RootStack />;
-	}
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  render() {
+    return (
+      <RootStack />
+    );
+  }
 }
+
+export default App;

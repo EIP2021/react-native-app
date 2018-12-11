@@ -1,105 +1,31 @@
-/**
-*** @flow
-**/
-
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
-import {withNavigationFocus} from 'react-navigation'
-import {RNCamera} from 'react-native-camera';
-import {Icon} from 'react-native-elements'
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
-class Scanner extends Component {
-
-  static navigationOptions = {
-    header: null
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      torch: false,
-      camera: true
-    }
-  }
-
-  componentDidMount = async () => {
-    console.log("Scanner mounted");
-  }
-
-  render() {
-    if (this.props.isFocused) {
-      return (
-        <View style={styles.container}>
-          <RNCamera
-              ref={ref => {
-                this.camera = ref;
-              }}
-              style={styles.preview}
-              flashMode={this.state.torch ? RNCamera.Constants.FlashMode.torch : RNCamera.Constants.FlashMode.off}
-              type={this.state.camera ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front}
-              permissionDialogTitle={'Permission to use camera'}
-              permissionDialogMessage={'We need your permission to use your camera phone'}
-              onGoogleVisionBarcodesDetected={this.handleBarcode}
-          />
-          <View style={{flex: 0, flexDirection: 'row', justifyContent: 'center',}}>
-            <TouchableOpacity
-              onPress={this.turnOnTorch}
-              style={[styles.torch, {backgroundColor: this.state.torch ? 'white' : '#999999',}]}
-            >
-              <Icon
-                name={this.state.torch ? 'md-flash-off' : 'md-flash'}
-                type='ionicon'
-                color='black'
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={[styles.box]}/>
-        </View>
-      );
-    } else {
-      return (null);
-    }
-  }
-
-  turnOnTorch = () => {
-    this.setState({
-      torch: !this.state.torch
-    })
-  }
-
-  handleBarcode = ({barcodes}) => {
-    if (barcodes && barcodes.length) {
-      this.props.navigation.navigate('Product', {
-        barcode: barcodes[0]
-      })
-    }
-  }
-}
-
-export default withNavigationFocus(Scanner)
+import { withNavigationFocus } from 'react-navigation';
+import { RNCamera } from 'react-native-camera';
+import { Icon } from 'react-native-elements';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'black'
+    backgroundColor: 'black',
   },
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   torch: {
     position: 'absolute',
-    paddingTop: hp("1%"),
-    width: wp("7%"),
-    height: hp("5%"),
+    paddingTop: hp('1%'),
+    width: wp('7%'),
+    height: hp('5%'),
     bottom: hp('90%'),
     right: wp('90%'),
     borderRadius: 15,
@@ -107,12 +33,91 @@ const styles = StyleSheet.create({
   },
   box: {
     position: 'absolute',
-    width: wp("90%"),
-    height: hp("30%"),
+    width: wp('90%'),
+    height: hp('30%'),
     bottom: hp('35%'),
     right: wp('5%'),
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: 'white'
+    borderColor: 'white',
   },
 });
+
+class Scanner extends Component {
+  static navigationOptions = {
+    header: null,
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      torch: false,
+      camera: true,
+    };
+  }
+
+  componentDidMount = async () => {
+    console.log('Scanner mounted');
+  }
+
+
+  turnOnTorch = () => {
+    const { torch } = this.state;
+    this.setState({
+      torch: !torch,
+    });
+  }
+
+  handleBarcode = ({ barcodes }) => {
+    if (barcodes && barcodes.length) {
+      this.props.navigation.navigate('Product', {
+        barcode: barcodes[0],
+      });
+    }
+  }
+
+  render() {
+    if (this.props.isFocused) {
+      return (
+        <View style={styles.container}>
+          <RNCamera
+            ref={(ref) => {
+              this.camera = ref;
+            }}
+            style={styles.preview}
+            flashMode={this.state.torch ? RNCamera.Constants.FlashMode.torch
+              : RNCamera.Constants.FlashMode.off}
+            type={this.state.camera ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front}
+            permissionDialogTitle="Permission to use camera"
+            permissionDialogMessage="We need your permission to use your camera phone"
+            onGoogleVisionBarcodesDetected={this.handleBarcode}
+          />
+          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+            <TouchableOpacity
+              onPress={this.turnOnTorch}
+              style={[styles.torch, { backgroundColor: this.state.torch ? 'white' : '#999999' }]}
+            >
+              <Icon
+                name={this.state.torch ? 'md-flash-off' : 'md-flash'}
+                type="ionicon"
+                color="black"
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.box]} />
+        </View>
+      );
+    }
+    return (null);
+  }
+}
+
+Scanner.propTypes = {
+  isFocused: PropTypes.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+    state: PropTypes.object.isRequired,
+  }).isRequired,
+};
+
+export default withNavigationFocus(Scanner);
