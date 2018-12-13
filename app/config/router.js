@@ -8,18 +8,20 @@ import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import Scanner from '../screens/Scanner';
 import Product from '../screens/Product';
 import Placeholder from '../screens/Placeholder';
+import WelcomeScreen from '../screens/WelcomeScreen';
+import SignInScreen from '../screens/SignInScreen';
 
 const AuthStack = createStackNavigator(
   {
+    Welcome: {
+      screen: WelcomeScreen,
+    },
     SignIn: {
-      screen: AuthLoadingScreen,
+      screen: SignInScreen,
     },
     SignUp: {
-      screen: AuthLoadingScreen,
+      screen: Placeholder,
     },
-  },
-  {
-    headerMode: 'none',
   },
 );
 
@@ -34,6 +36,10 @@ const ScanStack = createStackNavigator(
   },
 );
 
+ScanStack.navigationOptions = {
+  tabBarLabel: 'Scan',
+};
+
 const ProfileStack = createStackNavigator(
   {
     Profile: {
@@ -41,6 +47,10 @@ const ProfileStack = createStackNavigator(
     },
   },
 );
+
+ProfileStack.navigationOptions = {
+  tabBarLabel: 'Profile',
+};
 
 
 const AppStack = createBottomTabNavigator(

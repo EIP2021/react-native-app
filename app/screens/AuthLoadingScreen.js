@@ -7,6 +7,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -19,11 +20,11 @@ const styles = StyleSheet.create({
 
 class AuthLoadingScreen extends Component {
   componentDidMount = async () => {
-    this.checkAuth();
-  }
-
-  checkAuth = () => {
-    this.props.navigation.navigate('App');
+    if (this.props.auth.isLogged) {
+      this.props.navigation.navigate('Profile');
+    } else {
+      this.props.navigation.navigate('Welcome');
+    }
   }
 
   render() {
@@ -40,6 +41,13 @@ AuthLoadingScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  auth: PropTypes.shape({
+    isLogged: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
-export default AuthLoadingScreen;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(AuthLoadingScreen);
