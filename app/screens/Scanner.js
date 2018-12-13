@@ -23,11 +23,11 @@ const styles = StyleSheet.create({
   },
   torch: {
     position: 'absolute',
-    paddingTop: hp('1%'),
-    width: wp('7%'),
-    height: hp('5%'),
-    bottom: hp('90%'),
-    right: wp('90%'),
+    paddingTop: 5,
+    width: 32,
+    height: 32,
+    bottom: hp('5%'),
+    right: wp('5%'),
     borderRadius: 15,
     alignItems: 'center',
   },
@@ -57,9 +57,7 @@ class Scanner extends Component {
   }
 
   componentDidMount = async () => {
-    console.log('Scanner mounted');
   }
-
 
   turnOnTorch = () => {
     const { torch } = this.state;
