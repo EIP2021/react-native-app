@@ -1,26 +1,34 @@
+import React from 'react';
 import {
   Icon,
 } from 'react-native-elements';
-import React from 'react';
 import PropTypes from 'prop-types';
 import colors from '../constants/colors';
 
-export default class TabBarIcon extends React.components {
-  render() {
-    return (
-      <Icon
-        name={this.props.name}
-        type={this.props.type}
-        size={26}
-        style={{ marginBottom: -3 }}
-        color={this.props.focused ? colors.tabIconSelected : colors.tabIconDefault}
-      />
-    );
-  }
-}
+export const ScannerTabBarIcon = ({ focused }) => (
+  <Icon
+    name="md-qr-scanner"
+    type="ionicon"
+    size={26}
+    style={{ marginBottom: -3 }}
+    color={focused ? colors.tabIconSelected : colors.tabIconDefault}
+  />
+);
 
-TabBarIcon.propTypes = {
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+ScannerTabBarIcon.propTypes = {
+  focused: PropTypes.bool.isRequired,
+};
+
+export const ProfilTabBarIcon = ({ focused }) => (
+  <Icon
+    name="md-person"
+    type="ionicon"
+    size={26}
+    style={{ marginBottom: -3 }}
+    color={focused ? colors.tabIconSelected : colors.tabIconDefault}
+  />
+);
+
+ProfilTabBarIcon.propTypes = {
   focused: PropTypes.bool.isRequired,
 };

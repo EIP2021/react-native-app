@@ -7,9 +7,13 @@ import {
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import Scanner from '../screens/Scanner';
 import Product from '../screens/Product';
-import Placeholder from '../screens/Placeholder';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import SignInScreen from '../screens/SignInScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import SignUpFirstScreen from '../screens/SignUp/SignUpFirstScreen';
+import SignUpSecondScreen from '../screens/SignUp/SignUpSecondScreen';
+import SignUpThirdScreen from '../screens/SignUp/SignUpThirdScreen';
+import { ScannerTabBarIcon, ProfilTabBarIcon } from '../components/TabBarIcon';
 
 const AuthStack = createStackNavigator(
   {
@@ -19,8 +23,14 @@ const AuthStack = createStackNavigator(
     SignIn: {
       screen: SignInScreen,
     },
-    SignUp: {
-      screen: Placeholder,
+    SignUpFirst: {
+      screen: SignUpFirstScreen,
+    },
+    SignUpSecond: {
+      screen: SignUpSecondScreen,
+    },
+    SignUpThird: {
+      screen: SignUpThirdScreen,
     },
   },
 );
@@ -38,20 +48,27 @@ const ScanStack = createStackNavigator(
 
 ScanStack.navigationOptions = {
   tabBarLabel: 'Scan',
+  tabBarOptions: {
+    activeTintColor: '#2ecc71',
+  },
+  tabBarIcon: ScannerTabBarIcon,
 };
 
 const ProfileStack = createStackNavigator(
   {
     Profile: {
-      screen: Placeholder,
+      screen: ProfileScreen,
     },
   },
 );
 
 ProfileStack.navigationOptions = {
-  tabBarLabel: 'Profile',
+  tabBarLabel: 'Profil',
+  tabBarOptions: {
+    activeTintColor: '#2ecc71',
+  },
+  tabBarIcon: ProfilTabBarIcon,
 };
-
 
 const AppStack = createBottomTabNavigator(
   {

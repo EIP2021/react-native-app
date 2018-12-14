@@ -1,14 +1,11 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator,
 } from 'react-native';
 import {
   Input,
@@ -17,10 +14,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import PropTypes from 'prop-types';
 import RF from 'react-native-responsive-fontsize';
-import * as authActions from '../actions/auth-actions';
-import colors from '../constants/colors';
+import PropTypes from 'prop-types';
+import colors from '../../constants/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -73,9 +69,9 @@ const styles = StyleSheet.create({
   },
 });
 
-class SignInScreen extends Component {
+class SignUpThirdScreen extends Component {
   static navigationOptions = {
-    title: 'Connexion',
+    title: 'Informations',
     headerTitleStyle: {
       fontFamily: 'OpenSans-Bold',
       color: 'white',
@@ -92,74 +88,58 @@ class SignInScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      size: '',
+      sexe: '',
+      weight: 0,
     };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.auth !== prevProps.auth) {
-      if (this.props.auth.isLogged) {
-        this.props.navigation.navigate('Profile');
-      }
-    }
-  }
-
-  showActivityBar = () => {
-    if (this.props.auth.pending) {
-      return (
-        <ActivityIndicator
-          size="small"
-          color="white"
-          style={{ marginTop: hp('2%') }}
-        />
-      );
-    }
-    return undefined;
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.form}>
-          <Text style={styles.connect}>Connectez-vous a votre compte KiUp</Text>
+          <Text style={styles.connect}>Afin d'affiner vos besoins journaliers en nutriments nous avons besoin de quelques informations supplementaires</Text>
           <Input
-            leftIcon={{ type: 'material-icons', name: 'mail-outline', color: 'grey' }}
+            leftIcon={{ type: 'entypo', name: 'ruler', color: 'grey' }}
             inputStyle={styles.input}
             inputContainerStyle={styles.inputContainer}
-            autoFocus
-            placeholder="Email"
+            placeholder="Taille (cm)"
             autoCapitalize="none"
             placeholderTextColor="grey"
             autoCorrect={false}
             keyboardAppearance="light"
-            keyboardType="email-address"
-            returnKeyType="next"
-            blurOnSubmit={false}
-            onChangeText={text => this.setState({ email: text })}
-          />
-          <Input
-            leftIcon={{ type: 'material-icons', name: 'lock', color: 'grey' }}
-            inputStyle={styles.input}
-            inputContainerStyle={styles.inputContainer}
-            placeholder="Password"
-            autoCapitalize="none"
-            placeholderTextColor="grey"
-            autoCorrect={false}
-            keyboardAppearance="light"
-            returnKeyType="done"
             blurOnSubmit
-            secureTextEntry
-            onChangeText={text => this.setState({ password: text })}
+            onChangeText={text => this.setState({ size: text })}
           />
-          {this.showActivityBar()}
+          <Input
+            leftIcon={{ type: 'font-awesome', name: 'balance-scale', color: 'grey' }}
+            inputStyle={styles.input}
+            inputContainerStyle={styles.inputContainer}
+            placeholder="Poids (kg)"
+            autoCapitalize="none"
+            placeholderTextColor="grey"
+            autoCorrect={false}
+            keyboardAppearance="light"
+            blurOnSubmit
+            onChangeText={text => this.setState({ weight: text })}
+          />
+          <Input
+            leftIcon={{ type: 'font-awesome', name: 'intersex', color: 'grey' }}
+            inputStyle={styles.input}
+            inputContainerStyle={styles.inputContainer}
+            placeholder="Sexe (h/f)"
+            autoCapitalize="none"
+            placeholderTextColor="grey"
+            autoCorrect={false}
+            keyboardAppearance="light"
+            blurOnSubmit
+            onChangeText={text => this.setState({ sexe: text })}
+          />
           <TouchableOpacity
             style={styles.button}
-            onPress={() => {
-              this.props.login(this.state.email, this.state.password);
-            }}
+            onPress={() => this.props.navigation.navigate('Profile', { size: this.state.size, weigth: this.state.weight, sexe: this.state.sexe })}
           >
-            <Text style={styles.title}>Se connecter</Text>
+            <Text style={styles.title}>Continuer</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -167,24 +147,10 @@ class SignInScreen extends Component {
   }
 }
 
-SignInScreen.propTypes = {
+SignUpThirdScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  auth: PropTypes.shape({
-    isLogged: PropTypes.bool.isRequired,
-    pending: PropTypes.bool.isRequired,
-    token: PropTypes.string.isRequired,
-  }).isRequired,
-  login: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-});
-
-const mapDispatchToProps = {
-  login: authActions.login,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
+export default SignUpThirdScreen;

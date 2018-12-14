@@ -86,7 +86,10 @@ export default class WelcomeScreen extends Component {
             <View style={styles.bar} />
           </View>
           <View style={{ alignItems: 'center' }}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.props.navigation.navigate('SignUpFirst')}
+            >
               <Text style={styles.title}>Créer un compte</Text>
             </TouchableOpacity>
           </View>

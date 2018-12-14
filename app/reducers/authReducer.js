@@ -3,7 +3,7 @@ import * as actions from '../actions/action-types';
 const initialState = {
   pending: false,
   isLogged: false,
-  token: '',
+  token: 'XD',
   error: '',
 };
 
