@@ -1,0 +1,7 @@
+{
+  "invalidEmail": "Invalid Email address",
+  "invalidPassword": "Password must contain one number and one uppercase caracters",
+  "invalidLength": "Password must contain at least 8 caracters",
+  "differentPassword": "Password are different",
+  "emailUsed": "Email address already used",
+}

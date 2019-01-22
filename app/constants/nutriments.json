@@ -1,0 +1,50 @@
+{
+  "carbohydrates": {
+    "name": "glucide",
+    "unit": "g",
+  },
+  "fat": {
+    "name": "lipides",
+    "unit": "g",
+  },
+  "fiber": {
+    "name": "fibres",
+    "unit": "g",
+  },
+  "proteins": {
+    "name": "proteines",
+    "unit": "g",
+  },
+  "salt": {
+    "name": "sel",
+    "unit": "g",
+    "max": 5,
+  },
+  "sugars": {
+    "name": "sucre",
+    "unit": "g",
+  },
+  "sodium": {
+    "name": "sodium",
+    "unit": "g",
+    "max": 1.5,
+  },
+  "phosphorus": {
+    "name": "phosphore",
+    "unit": "mg",
+    "max": 600,
+  },
+  "calcium": {
+    "name": "calcium",
+    "unit": "mg",
+    "max": 1200,
+  },
+  "magnesium": {
+    "name": "magnesium",
+    "unit": "mg",
+  },
+  "potassium": {
+    "name": "potassium",
+    "unit": "mg",
+  }
+}

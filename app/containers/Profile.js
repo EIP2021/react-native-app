@@ -15,6 +15,7 @@ import { Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as authActions from '../actions/auth-actions';
+import { getNutriments, getNutrimentsPercentage } from '../reducers/statsReducer';
 
 const GREEN = processColor('#2ECC71');
 const RED = processColor('#D14B5A');
@@ -23,9 +24,9 @@ const BLUE = processColor('#0000FF');
 
 const nutrimentsList = {
   potassium: 0,
-  sel: 1,
-  proteine: 2,
-  phosphore: 3,
+  sodium: 1,
+  proteins: 2,
+  phosphorus: 3,
 };
 
 const styles = StyleSheet.create({
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class ProfileScreen extends Component {
+class Profile extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Profil',
     headerRight: (
@@ -72,7 +73,6 @@ class ProfileScreen extends Component {
         onPress={() => {
           const logout = navigation.getParam('logout');
           logout();
-          navigation.navigate('Welcome');
         }}
         title="Sign out"
         color="red"
@@ -141,7 +141,7 @@ class ProfileScreen extends Component {
             {'    '}
             Vous avez consommé
             {' '}
-            {this.props.stats.nutriments[this.state.selectedEntry.nutrimentName]}
+            {this.props.nutriments[this.state.selectedEntry.nutrimentName]}
             {' grammes'}
           </Text>
         </View>
@@ -154,7 +154,7 @@ class ProfileScreen extends Component {
     const data = {
       dataSets: [{
         label: Object.keys(nutrimentsList)[0],
-        values: [{ x: 0, y: this.props.stats.nutrimentsPercentage.potassium }],
+        values: [{ x: 0, y: this.props.nutrimentsPercentage.potassium }],
         config: {
           drawValues: true,
           colors: [RED],
@@ -163,7 +163,7 @@ class ProfileScreen extends Component {
         },
       }, {
         label: Object.keys(nutrimentsList)[1],
-        values: [{ x: 1, y: this.props.stats.nutrimentsPercentage.sel }],
+        values: [{ x: 1, y: this.props.nutrimentsPercentage.sodium }],
         config: {
           drawValues: true,
           colors: [GREEN],
@@ -172,7 +172,7 @@ class ProfileScreen extends Component {
         },
       }, {
         label: Object.keys(nutrimentsList)[2],
-        values: [{ x: 2, y: this.props.stats.nutrimentsPercentage.proteine }],
+        values: [{ x: 2, y: this.props.nutrimentsPercentage.proteins }],
         config: {
           drawValues: true,
           colors: [BLUE],
@@ -181,7 +181,7 @@ class ProfileScreen extends Component {
         },
       }, {
         label: Object.keys(nutrimentsList)[3],
-        values: [{ x: 3, y: this.props.stats.nutrimentsPercentage.phosphore }],
+        values: [{ x: 3, y: this.props.nutrimentsPercentage.phosphorus }],
         config: {
           drawValues: true,
           colors: [ORANGE],
@@ -227,34 +227,33 @@ class ProfileScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  stats: state.product,
+  nutriments: getNutriments(state),
+  nutrimentsPercentage: getNutrimentsPercentage(state),
 });
 
 const mapDispatchToProps = {
   logout: authActions.logout,
 };
 
-ProfileScreen.propTypes = {
+Profile.propTypes = {
   navigation: PropTypes.shape({
     setParams: PropTypes.func.isRequired,
     getParam: PropTypes.func.isRequired,
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  stats: PropTypes.shape({
-    nutriments: PropTypes.shape({
-      potassium: PropTypes.number.isRequired,
-      sel: PropTypes.number.isRequired,
-      proteine: PropTypes.number.isRequired,
-      phosphore: PropTypes.number.isRequired,
-    }).isRequired,
-    nutrimentsPercentage: PropTypes.shape({
-      potassium: PropTypes.number.isRequired,
-      sel: PropTypes.number.isRequired,
-      proteine: PropTypes.number.isRequired,
-      phosphore: PropTypes.number.isRequired,
-    }).isRequired,
+  nutriments: PropTypes.shape({
+    potassium: PropTypes.number.isRequired,
+    sodium: PropTypes.number.isRequired,
+    proteins: PropTypes.number.isRequired,
+    phosphorus: PropTypes.number.isRequired,
+  }).isRequired,
+  nutrimentsPercentage: PropTypes.shape({
+    potassium: PropTypes.number.isRequired,
+    sodium: PropTypes.number.isRequired,
+    proteins: PropTypes.number.isRequired,
+    phosphorus: PropTypes.number.isRequired,
   }).isRequired,
   logout: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

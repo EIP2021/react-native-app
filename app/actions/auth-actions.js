@@ -1,25 +1,36 @@
 import * as actions from './action-types';
 
 export const login = (email, password) => ({
-  type: actions.LOGIN_ACTION,
+  type: actions.LOGIN_REQUEST,
   email,
   password,
 });
 
+export const register = (email, firstPassword, secondPassword) => ({
+  type: actions.REGISTER_REQUEST,
+  email,
+  firstPassword,
+  secondPassword,
+});
+
 export const logout = () => ({
-  type: actions.LOGOUT,
+  type: actions.LOGOUT_REQUEST,
+});
+
+export const remove = () => ({
+  type: actions.AUTH_REMOVE,
 });
 
 export const setPending = () => ({
-  type: actions.LOGIN_PENDING,
+  type: actions.AUTH_PENDING,
 });
 
 export const setError = error => ({
-  type: actions.LOGIN_ERROR,
+  type: actions.AUTH_ERROR,
   error,
 });
 
 export const setSuccess = token => ({
-  type: actions.LOGIN_SUCCESS,
+  type: actions.AUTH_SUCCESS,
   token,
 });

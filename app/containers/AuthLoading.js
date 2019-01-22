@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class AuthLoadingScreen extends Component {
+class AuthLoading extends Component {
   componentDidMount = async () => {
     if (this.props.auth.isLogged) {
       this.props.navigation.navigate('Profile');
@@ -37,7 +37,7 @@ class AuthLoadingScreen extends Component {
   }
 }
 
-AuthLoadingScreen.propTypes = {
+AuthLoading.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
@@ -50,4 +50,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps)(AuthLoadingScreen);
+export default connect(mapStateToProps)(AuthLoading);

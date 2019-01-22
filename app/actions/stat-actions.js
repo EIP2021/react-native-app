@@ -1,10 +1,10 @@
 import * as actions from './action-types';
 
-export const addProduct = product => ({
-  type: actions.ADD_PRODUCT,
-  product,
+export const addNutriments = nutriments => ({
+  type: actions.ADD_NUTRIMENTS,
+  nutriments,
 });
 
-export const deleteProduct = () => ({
-  type: actions.ADD_PRODUCT,
+export const deleteNutriments = () => ({
+  type: actions.DELETE_NUTRIMENTS,
 });

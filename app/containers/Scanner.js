@@ -2,34 +2,20 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  TouchableOpacity,
 } from 'react-native';
+import { connect } from 'react-redux';
 import { withNavigationFocus } from 'react-navigation';
-import { RNCamera } from 'react-native-camera';
-import { Icon } from 'react-native-elements';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import PropTypes from 'prop-types';
+import { RNCamera } from 'react-native-camera';
+import TorchIcon from '../components/TorchIcon';
+import { scan } from '../actions/scan-actions';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'black',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  torch: {
-    position: 'absolute',
-    paddingTop: 5,
-    width: 32,
-    height: 32,
-    bottom: hp('5%'),
-    right: wp('5%'),
-    borderRadius: 15,
-    alignItems: 'center',
   },
   box: {
     position: 'absolute',
@@ -40,6 +26,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: 'white',
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 });
 
@@ -52,7 +43,6 @@ class Scanner extends Component {
     super(props);
     this.state = {
       torch: false,
-      camera: true,
     };
   }
 
@@ -67,41 +57,29 @@ class Scanner extends Component {
   }
 
   handleBarcode = ({ barcodes }) => {
-    if (barcodes && barcodes.length) {
-      this.props.navigation.navigate('Product', {
-        barcode: barcodes[0],
-      });
+    if (this.props.pending === false && barcodes && barcodes.length) {
+      this.props.scanBarcode(barcodes[0].data);
     }
   }
 
   render() {
     if (this.props.isFocused) {
+      const flashMode = RNCamera.Constants.FlashMode;
       return (
         <View style={styles.container}>
           <RNCamera
-            ref={(ref) => {
-              this.camera = ref;
-            }}
+            ref={(ref) => { this.camera = ref; }}
             style={styles.preview}
-            flashMode={this.state.torch ? RNCamera.Constants.FlashMode.torch
-              : RNCamera.Constants.FlashMode.off}
-            type={this.state.camera ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front}
+            flashMode={this.state.torch ? flashMode.torch : flashMode.off}
+            type={RNCamera.Constants.Type.back}
             permissionDialogTitle="Permission to use camera"
             permissionDialogMessage="We need your permission to use your camera phone"
             onGoogleVisionBarcodesDetected={this.handleBarcode}
           />
-          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-            <TouchableOpacity
-              onPress={this.turnOnTorch}
-              style={[styles.torch, { backgroundColor: this.state.torch ? 'white' : '#999999' }]}
-            >
-              <Icon
-                name={this.state.torch ? 'md-flash-off' : 'md-flash'}
-                type="ionicon"
-                color="black"
-              />
-            </TouchableOpacity>
-          </View>
+          <TorchIcon
+            torch={this.state.torch}
+            callback={this.turnOnTorch}
+          />
           <View style={[styles.box]} />
         </View>
       );
@@ -116,6 +94,16 @@ Scanner.propTypes = {
     navigate: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired,
   }).isRequired,
+  scanBarcode: PropTypes.func.isRequired,
+  pending: PropTypes.bool.isRequired,
 };
 
-export default withNavigationFocus(Scanner);
+const mapStateToProps = state => ({
+  pending: state.scan.pending,
+});
+
+const mapDispatchToProps = {
+  scanBarcode: scan,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(Scanner));

@@ -3,7 +3,8 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import authReducer from './authReducer';
-import statReducer from './statReducer';
+import statsReducer from './statsReducer';
+import ScanReducer from './scanReducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -11,15 +12,10 @@ const authPersistConfig = {
   stateReconciler: autoMergeLevel1,
   blacklist: ['pending', 'error', 'token'],
 };
-
-// const statPersistConfig = {
-//   key: 'stats',
-//   storage,
-// };
-
 const rootReducers = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-  product: statReducer,
+  stats: statsReducer,
+  scan: ScanReducer,
 });
 
 export default rootReducers;

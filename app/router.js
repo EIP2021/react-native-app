@@ -4,33 +4,25 @@ import {
   createSwitchNavigator,
   createAppContainer,
 } from 'react-navigation';
-import AuthLoadingScreen from '../screens/AuthLoadingScreen';
-import Scanner from '../screens/Scanner';
-import Product from '../screens/Product';
-import WelcomeScreen from '../screens/WelcomeScreen';
-import SignInScreen from '../screens/SignInScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import SignUpFirstScreen from '../screens/SignUp/SignUpFirstScreen';
-import SignUpSecondScreen from '../screens/SignUp/SignUpSecondScreen';
-import SignUpThirdScreen from '../screens/SignUp/SignUpThirdScreen';
-import { ScannerTabBarIcon, ProfilTabBarIcon } from '../components/TabBarIcon';
+import AuthLoading from './containers/AuthLoading';
+import Scanner from './containers/Scanner';
+import Product from './containers/Product';
+import Welcome from './containers/Welcome';
+import SignIn from './containers/SignIn';
+import Profile from './containers/Profile';
+import SignUp from './containers/SignUp';
+import { ScannerTabBarIcon, ProfilTabBarIcon } from './components/TabBarIcon';
 
 const AuthStack = createStackNavigator(
   {
     Welcome: {
-      screen: WelcomeScreen,
+      screen: Welcome,
     },
     SignIn: {
-      screen: SignInScreen,
+      screen: SignIn,
     },
-    SignUpFirst: {
-      screen: SignUpFirstScreen,
-    },
-    SignUpSecond: {
-      screen: SignUpSecondScreen,
-    },
-    SignUpThird: {
-      screen: SignUpThirdScreen,
+    SignUp: {
+      screen: SignUp,
     },
   },
 );
@@ -57,7 +49,7 @@ ScanStack.navigationOptions = {
 const ProfileStack = createStackNavigator(
   {
     Profile: {
-      screen: ProfileScreen,
+      screen: Profile,
     },
   },
 );
@@ -84,7 +76,7 @@ const AppStack = createBottomTabNavigator(
 
 const AppRoot = createSwitchNavigator(
   {
-    AuthLoading: AuthLoadingScreen,
+    AuthLoading,
     App: AppStack,
     Auth: AuthStack,
   },

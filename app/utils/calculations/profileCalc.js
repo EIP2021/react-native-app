@@ -1,3 +1,3 @@
-const getIntakePercentage = (curr, max) => (curr / max);
+export const getIntakePercentage = (curr, max) => (curr === 0 ? 0 : curr / max);
 
-export default getIntakePercentage;
+export const getPercentage = (curr, max) => (getIntakePercentage(curr, max) * 100);

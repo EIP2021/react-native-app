@@ -2,4 +2,10 @@
   "theme": "#2ecc71",
   "tabIconDefault": "#ccc",
   "tabIconSelected": "#2ecc71",
+  "nutriments": {
+    "potassium": "#efca08",
+    "calcium": "#d9594c",
+    "sodium": "#2ecc71",
+    "proteins": "#69a2b0",
+  }
 }

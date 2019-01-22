@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 });
-export default class WelcomeScreen extends Component {
+
+class Welcome extends Component {
   static navigationOptions = {
     header: null,
   }
@@ -88,7 +89,7 @@ export default class WelcomeScreen extends Component {
           <View style={{ alignItems: 'center' }}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('SignUpFirst')}
+              onPress={() => this.props.navigation.navigate('SignUp')}
             >
               <Text style={styles.title}>Créer un compte</Text>
             </TouchableOpacity>
@@ -99,8 +100,10 @@ export default class WelcomeScreen extends Component {
   }
 }
 
-WelcomeScreen.propTypes = {
+Welcome.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
+
+export default Welcome;

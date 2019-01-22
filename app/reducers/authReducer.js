@@ -3,32 +3,32 @@ import * as actions from '../actions/action-types';
 const initialState = {
   pending: false,
   isLogged: false,
-  token: 'XD',
-  error: '',
+  token: '',
+  errorMessage: '',
 };
 
 export default function authReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case actions.LOGIN_ERROR:
+    case actions.AUTH_ERROR:
       return {
         ...state,
-        error: state.error,
         pending: false,
+        errorMessage: action.error,
       };
-    case actions.LOGIN_SUCCESS:
+    case actions.AUTH_SUCCESS:
       return {
         ...state,
         token: state.token,
         isLogged: true,
         pending: false,
-        error: '',
+        errorMessage: '',
       };
-    case actions.LOGIN_PENDING:
+    case actions.AUTH_PENDING:
       return {
         ...state,
         pending: true,
       };
-    case actions.LOGOUT:
+    case actions.AUTH_REMOVE:
       return {
         ...state,
         isLogged: false,
