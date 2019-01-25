@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getAuth } from '../selectors/auth-selector';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +48,7 @@ AuthLoading.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: getAuth(state),
 });
 
 export default connect(mapStateToProps)(AuthLoading);

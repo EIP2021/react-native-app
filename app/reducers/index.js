@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
-import authReducer from './authReducer';
-import statsReducer from './statsReducer';
-import ScanReducer from './scanReducer';
+import authReducer from './auth-reducer';
+import statsReducer from './stats-reducer';
+import ScanReducer from './scan-reducer';
 
 const authPersistConfig = {
   key: 'auth',

@@ -15,7 +15,10 @@ import { Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as authActions from '../actions/auth-actions';
-import { getNutriments, getNutrimentsPercentage } from '../reducers/statsReducer';
+import {
+  getNutrimentsConsumed,
+  getNutrimentsPercentage,
+} from '../selectors/stats-selector';
 
 const GREEN = processColor('#2ECC71');
 const RED = processColor('#D14B5A');
@@ -227,7 +230,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-  nutriments: getNutriments(state),
+  nutriments: getNutrimentsConsumed(state),
   nutrimentsPercentage: getNutrimentsPercentage(state),
 });
 

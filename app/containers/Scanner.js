@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import { RNCamera } from 'react-native-camera';
 import TorchIcon from '../components/TorchIcon';
 import { scan } from '../actions/scan-actions';
+import { getAuthPending } from '../selectors/auth-selector';
 
 const styles = StyleSheet.create({
   container: {
@@ -99,7 +100,7 @@ Scanner.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  pending: state.scan.pending,
+  pending: getAuthPending(state),
 });
 
 const mapDispatchToProps = {

@@ -15,6 +15,7 @@ import AuthButton from '../components/AuthButton';
 import AuthInput from '../components/AuthInput';
 import { login } from '../actions/auth-actions';
 import colors from '../constants/colors';
+import { getAuth } from '../selectors/auth-selector';
 
 const styles = StyleSheet.create({
   container: {
@@ -124,7 +125,7 @@ SignIn.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: getAuth(state),
 });
 
 const mapDispatchToProps = {

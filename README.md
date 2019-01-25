@@ -13,3 +13,12 @@
 
 For android: `react-native run-android`
 For ios: `react-native run-ios`
+
+
+## Todo next release
+
+* implement reselector lib to memoize selector values in a selectors folder
+* implement unit test in sagas, reducer, container
+* implement new UI Display
+* implement base application styles (color, text, logo) in a styles folder
+* make some generic component

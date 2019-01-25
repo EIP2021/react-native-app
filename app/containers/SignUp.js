@@ -17,6 +17,7 @@ import colors from '../constants/colors';
 import { register } from '../actions/auth-actions';
 import AuthInput from '../components/AuthInput';
 import AuthButton from '../components/AuthButton';
+import { getAuth } from '../selectors/auth-selector';
 
 const styles = StyleSheet.create({
   container: {
@@ -113,7 +114,7 @@ class SignUpSecondScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: getAuth(state),
 });
 
 const mapDispatchToProps = {

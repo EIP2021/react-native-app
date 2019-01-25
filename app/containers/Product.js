@@ -16,7 +16,7 @@ import {
   getProductName,
   getProductNutriments,
   // getProductPicture,
-} from '../reducers/scanReducer';
+} from '../selectors/scan-selector';
 import NutrimentsList from '../components/NutrimentsList';
 import NutrimentsChart from '../components/NutrimentsChart';
 
