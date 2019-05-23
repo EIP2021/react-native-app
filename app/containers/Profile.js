@@ -11,7 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Badge } from 'react-native-elements';
+import { Badge, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as authActions from '../actions/auth-actions';
@@ -35,6 +35,12 @@ const nutrimentsList = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  topContainer: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -72,7 +78,15 @@ class Profile extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Profil',
     headerRight: (
+      <View style={styles.topContainer}>
       <Button
+        icon={<Icon name="edit" color="white" size={18} />}
+        onPress={() => navigation.navigate('ModifyProfile')}
+        title="Edit"
+        color="#2ECC71"
+      />
+      <Button
+        icon={<Icon name="poweroff" color="white" size={18} />}
         onPress={() => {
           const logout = navigation.getParam('logout');
           logout();
@@ -80,6 +94,7 @@ class Profile extends Component {
         title="Sign out"
         color="red"
       />
+      </View>
     ),
   });
 

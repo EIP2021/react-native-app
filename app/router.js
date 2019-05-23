@@ -11,6 +11,7 @@ import Welcome from './containers/Welcome';
 import SignIn from './containers/SignIn';
 import Profile from './containers/Profile';
 import SignUp from './containers/SignUp';
+import ModifyProfile from './containers/ModifyProfile';
 import { ScannerTabBarIcon, ProfilTabBarIcon } from './components/TabBarIcon';
 
 const AuthStack = createStackNavigator(
@@ -50,6 +51,9 @@ const ProfileStack = createStackNavigator(
   {
     Profile: {
       screen: Profile,
+    },
+    ModifyProfile: {
+      screen: ModifyProfile,
     },
   },
 );
