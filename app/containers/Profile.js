@@ -4,21 +4,22 @@ import {
   View,
   processColor,
   Text,
-  Button,
 } from 'react-native';
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Badge, Icon } from 'react-native-elements';
+import { Badge, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import PropTypes from 'prop-types';
 import * as authActions from '../actions/auth-actions';
 import {
   getNutrimentsConsumed,
   getNutrimentsPercentage,
 } from '../selectors/stats-selector';
+import colors from '../constants/colors';
 
 const GREEN = processColor('#2ECC71');
 const RED = processColor('#D14B5A');
@@ -79,21 +80,21 @@ class Profile extends Component {
     title: 'Profil',
     headerRight: (
       <View style={styles.topContainer}>
-      <Button
-        icon={<Icon name="edit" color="white" size={18} />}
-        onPress={() => navigation.navigate('ModifyProfile')}
-        title="Edit"
-        color="#2ECC71"
-      />
-      <Button
-        icon={<Icon name="poweroff" color="white" size={18} />}
-        onPress={() => {
-          const logout = navigation.getParam('logout');
-          logout();
-        }}
-        title="Sign out"
-        color="red"
-      />
+        <Button
+          icon={<Icon name="edit" color="white" size={18} />}
+          buttonStyle={{ backgroundColor: colors.theme }}
+          onPress={() => navigation.navigate('ModifyProfile')}
+          title="Edit"
+        />
+        <Button
+          icon={<Icon name="power-off" color="white" size={18} />}
+          buttonStyle={{ backgroundColor: 'red' }}
+          onPress={() => {
+            const logout = navigation.getParam('logout');
+            logout();
+          }}
+          title="Sign out"
+        />
       </View>
     ),
   });
