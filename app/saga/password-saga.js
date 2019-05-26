@@ -1,7 +1,7 @@
 import {
   put,
-  call,
   takeLatest,
+  // call,
 } from 'redux-saga/effects';
 import { Alert } from 'react-native';
 import NavigationService from '../services/navigation';
@@ -15,41 +15,41 @@ import { verifyPassword, verifyEmail } from '../services/authentification';
 // TODO delete this once api is set
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-const forgottenRequest = async (email) => {
-  const response = await fetch('', {
-    header: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({
-      email,
-    }),
-  });
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error(`Error status: ${response.status}`);
-  }
-  const json = await response.json();
-  return json;
-};
-
-const reinitializeRequest = async (password) => {
-  const response = await fetch('', {
-    header: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({
-      password,
-    }),
-  });
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error(`Error status: ${response.status}`);
-  }
-  const json = await response.json();
-  return json;
-};
+// const forgottenRequest = async (email) => {
+//   const response = await fetch('', {
+//     header: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     method: 'POST',
+//     body: JSON.stringify({
+//       email,
+//     }),
+//   });
+//   if (response.status < 200 || response.status >= 300) {
+//     throw new Error(`Error status: ${response.status}`);
+//   }
+//   const json = await response.json();
+//   return json;
+// };
+//
+// const reinitializeRequest = async (password) => {
+//   const response = await fetch('', {
+//     header: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     method: 'POST',
+//     body: JSON.stringify({
+//       password,
+//     }),
+//   });
+//   if (response.status < 200 || response.status >= 300) {
+//     throw new Error(`Error status: ${response.status}`);
+//   }
+//   const json = await response.json();
+//   return json;
+// };
 
 export function* forgotten({ email }) {
   try {

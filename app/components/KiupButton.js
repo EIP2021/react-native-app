@@ -4,13 +4,11 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
   ViewPropTypes,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import RF from 'react-native-responsive-fontsize';
 import styles from './styles/KiupButtonStyles';
 
 const KiupButton = ({

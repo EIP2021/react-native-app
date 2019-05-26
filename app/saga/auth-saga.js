@@ -1,7 +1,7 @@
 import {
   put,
   takeLatest,
-  call,
+  // call,
 } from 'redux-saga/effects';
 import {
   LOGIN_REQUEST,
@@ -17,43 +17,43 @@ import verify from '../services/authentification';
 // TODO delete this once api is set
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-const loginRequest = async (email, password) => {
-  const response = await fetch('', {
-    header: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  });
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error(`Error status: ${response.status}`);
-  }
-  const json = await response.json();
-  return json;
-};
-
-const registerRequest = async (email, password) => {
-  const response = await fetch('', {
-    header: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-  });
-  if (response.status < 200 || response.status >= 300) {
-    throw new Error(`Error status: ${response.status}`);
-  }
-  const json = await response.json();
-  return json;
-};
+// const loginrequest = async (email, password) => {
+//   const response = await fetch('', {
+//     header: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     method: 'POST',
+//     body: JSON.stringify({
+//       email,
+//       password,
+//     }),
+//   });
+//   if (response.status < 200 || response.status >= 300) {
+//     throw new Error(`Error status: ${response.status}`);
+//   }
+//   const json = await response.json();
+//   return json;
+// };
+//
+// const registerRequest = async (email, password) => {
+//   const response = await fetch('', {
+//     header: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     method: 'POST',
+//     body: JSON.stringify({
+//       email,
+//       password,
+//     }),
+//   });
+//   if (response.status < 200 || response.status >= 300) {
+//     throw new Error(`Error status: ${response.status}`);
+//   }
+//   const json = await response.json();
+//   return json;
+// };
 
 function* login({ email, password }) {
   try {

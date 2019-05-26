@@ -5,11 +5,11 @@ import KiupInput from './KiupInput';
 
 export default class SecureInput extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       showPassword: true,
       icon: 'eye',
-    }
+    };
   }
 
   changeTextStatus = () => {
