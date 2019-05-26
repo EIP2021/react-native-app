@@ -4,13 +4,16 @@ import {
   createSwitchNavigator,
   createAppContainer,
 } from 'react-navigation';
-import AuthLoading from './containers/AuthLoading';
+import AuthLoading from './containers/Authentification/AuthLoading';
+import Welcome from './containers/Authentification/Welcome';
+import SignIn from './containers/Authentification/SignIn';
+import SignUp from './containers/Authentification/SignUp';
+import Forgotten from './containers/Authentification/Forgotten';
+import Finalize from './containers/Authentification/Finalize';
+import Reinitialize from './containers/Authentification/Reinitialize';
+import Profile from './containers/Profile';
 import Scanner from './containers/Scanner';
 import Product from './containers/Product';
-import Welcome from './containers/Welcome';
-import SignIn from './containers/SignIn';
-import Profile from './containers/Profile';
-import SignUp from './containers/SignUp';
 import { ScannerTabBarIcon, ProfilTabBarIcon } from './components/TabBarIcon';
 
 const AuthStack = createStackNavigator(
@@ -23,6 +26,15 @@ const AuthStack = createStackNavigator(
     },
     SignUp: {
       screen: SignUp,
+    },
+    Forgotten: {
+      screen: Forgotten,
+    },
+    Reinitialize: {
+      screen: Reinitialize,
+    },
+    Finalize: {
+      screen: Finalize,
     },
   },
 );

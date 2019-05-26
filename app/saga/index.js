@@ -1,10 +1,9 @@
 import {
   fork,
 } from 'redux-saga/effects';
-import loginFlow from './login-saga';
-import registerFlow from './register-saga';
-import logoutFlow from './logout-saga';
+import { logoutFlow, registerFlow, loginFlow } from './auth-saga';
 import scanFlow from './scan-saga';
+import { forgottenFlow, reinitializeFlow } from './password-saga';
 
 export default function* rootSaga() {
   yield [
@@ -12,5 +11,7 @@ export default function* rootSaga() {
     fork(logoutFlow),
     fork(registerFlow),
     fork(scanFlow),
+    fork(forgottenFlow),
+    fork(reinitializeFlow),
   ];
 }

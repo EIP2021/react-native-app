@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAuth } from '../selectors/auth-selector';
+import { getAuth } from '../../selectors/auth-selector';
 
 const styles = StyleSheet.create({
   container: {
