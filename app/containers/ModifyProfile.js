@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-state */
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import {
   StyleSheet,
