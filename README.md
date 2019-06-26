@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/EIP2021/react-native-app/tree/develop.svg?style=svg)](https://circleci.com/gh/EIP2021/react-native-app/tree/develop)
 # Mobile application for EIP
 
 ## Installation
